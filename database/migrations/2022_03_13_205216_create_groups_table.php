@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('stud_full_name')->unique();
-            $table->unsignedBigInteger('group_id')->nullable();
+        Schema::create('groups', function (Blueprint $table) {
+            $table->id();
+            $table->integer('stud_count');
+            $table->unsignedBigInteger('proj_id');
 
-            $table->foreign('group_id')->references('id')->on('groups')
+            $table->foreign('proj_id')->references('id')->on('projects')
                 ->onDelete('CASCADE')->onUpdate('CASCADE');
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('groups');
     }
 };
