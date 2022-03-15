@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->integer('stud_count');
-            $table->unsignedBigInteger('proj_id');
+            $table->string('gr_name');
+            $table->integer('gr_stud_count');
+            $table->unsignedBigInteger('project_id');
 
-            $table->foreign('proj_id')->references('id')->on('projects')
+            $table->foreign('project_id')->references('id')->on('projects')
                 ->onDelete('CASCADE')->onUpdate('CASCADE');
         });
     }

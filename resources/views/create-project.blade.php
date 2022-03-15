@@ -29,17 +29,17 @@
 
                 <div class="form-group">
                     <label for="value">{{ __('Number of groups')}}</label>
-                    <input type="number" step="1" name="groups_count" id="groups_count" class="form-control"
-                    value="{{ old('groups_count') }}">
+                    <input type="number" step="1" name="proj_groups_count" id="proj_groups_count" class="form-control"
+                    value="{{ old('proj_groups_count') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="quality">{{ __('Maximum number of students per group')}}</label>
-                    <input type="number" step="1" name="stud_count" id="stud_count" class="form-control"
-                    value="{{ old('stud_count') }}">
+                    <input type="number" step="1" name="gr_stud_count" id="gr_stud_count" class="form-control"
+                    value="{{ old('gr_stud_count') }}">
                 </div>
 
-                <button type="submit" class="btn btn-success mb-5" name="buttonItm">{{ __('Add')}}</button>
+                <button type="submit" class="btn btn-success mb-4" name="buttonItm">{{ __('Add')}}</button>
 
                 @if(session('successProject'))
                     <div class="alert alert-success" role="alert">
@@ -50,7 +50,7 @@
             </form>
         </div>
 
-        <div class="col-lg-6 ml-5">
+        <div class="col-lg-7 ml-5">
 
             @if(session('deleteProject'))
                 <div class="alert alert-success mt-3" role="alert">
@@ -64,7 +64,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">{{ __('Project title') }}</th>
-                    <th scope="col">{{ __('Group count') }}</th>
+                    <th scope="col">{{ __('Number of groups') }}</th>
                     <th scope="col" class="text-center">{{ __('Actions') }}</th>
                 </tr>
                 </thead>
@@ -73,14 +73,15 @@
                     <tr>
                         <th scope="row">{{ $project->id }}</th>
                         <td>{{ $project->proj_title }}</td>
-                        <td>{{ $project->groups_count }}</td>
+                        <td>{{ $project->proj_groups_count }}</td>
                         <td>
                             <a href="{{ route('projects.show', $project->id) }}">
                                 <button type="button" class="btn btn-primary">{{ __('Open') }}</button>
                             </a>
 
-                            <a href="{{ route('projects.destroy', $project->id) }}" class="ml-4">
-                                <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
+
+                            <a href="{{ route('projects.destroy', $project->id) }}">
+                                <button type="button" class="btn btn-danger float-right">{{ __('Delete') }}</button>
                             </a>
                         </td>
                     </tr>

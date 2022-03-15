@@ -6,6 +6,7 @@ use App\Http\Requests\CreateProjectRequest;
 use App\Models\Group;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class ProjectController extends Controller
 {
@@ -41,9 +42,25 @@ class ProjectController extends Controller
     {
         $project = new Project();
         $project->proj_title = $request->input('proj_title');
-        $project->groups_count = $request->input('groups_count');
-
+        $project->proj_groups_count = $request->input('proj_groups_count');
         $project->save();
+
+        $groupsCount = (int)$request->input('proj_groups_count');
+
+        $group = new Group();
+        $groupsArray = [];
+
+        for ($i = 1; $i <= $groupsCount; $i++) {
+            $groupsArray[$i] = new Group([
+                $group->gr_name = 'Group #' . $i,
+                $group->gr_stud_count = $request->input('gr_stud_count'),
+                $group->project_id = $project->id,
+            ]);
+        }
+//        dd($groupsArray);
+//        $project->groups()->createMany($groupsArray);
+
+        $project->groups()->saveMany($groupsArray);
 
         return redirect()->route('projects')
             ->with('successProject', 'Project created successfully !');

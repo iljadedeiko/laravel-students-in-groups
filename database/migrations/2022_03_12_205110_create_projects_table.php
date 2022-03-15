@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('proj_title');
-            $table->integer('groups_count');
+            $table->integer('proj_groups_count');
         });
     }
 

@@ -26,8 +26,8 @@ class CreateProjectRequest extends FormRequest
     {
         return [
             'proj_title' => 'required|max:255',
-            'groups_count' => 'required|max:30',
-//            'stud_count' => 'required',
+            'proj_groups_count' => 'required|integer|max:20',
+            'gr_stud_count' => 'required|integer|max:20',
         ];
     }
 
@@ -35,8 +35,8 @@ class CreateProjectRequest extends FormRequest
     {
         return [
             'proj_title' => 'project title',
-            'groups_count' => 'number of groups',
-//            'stud_count' => 'maximum number of students',
+            'proj_groups_count' => 'number of groups',
+            'gr_stud_count' => 'maximum number of students',
         ];
     }
 }

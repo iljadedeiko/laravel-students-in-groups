@@ -12,10 +12,12 @@
 <body>
 
 <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 text-white bg-dark border-bottom shadow-sm">
-    <p class="h5 my-0 me-md-auto fw-normal">Projects for Students</p>
+    <a href="{{ route('projects') }}" class="text-decoration-none">
+        <p class="h5 my-0 me-md-auto fw-normal text-white">{{ __('Projects for Students') }}</p>
+    </a>
     <nav class="my-2 my-md-0 me-md-3 ml-5">
-        <a class="p-2 text-white" href="{{ route('projects') }}">Projects</a>
-        <a class="p-2 text-white" href="#">Student list</a>
+        <a class="p-2 text-white" href="{{ route('projects') }}">{{ __('Projects') }}</a>
+        <a class="p-2 text-white" href="#">{{ __('Student list') }}</a>
     </nav>
 </header>
 <div class="container mt-5">

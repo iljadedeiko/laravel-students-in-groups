@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title-block') Create new project @endsection
+@section('title-block') Project page @endsection
 
 @section('main-content')
 
