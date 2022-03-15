@@ -14,7 +14,7 @@
 <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 text-white bg-dark border-bottom shadow-sm">
     <p class="h5 my-0 me-md-auto fw-normal">Projects for Students</p>
     <nav class="my-2 my-md-0 me-md-3 ml-5">
-        <a class="p-2 text-white" href="#">Create new project</a>
+        <a class="p-2 text-white" href="{{ route('projects') }}">Projects</a>
         <a class="p-2 text-white" href="#">Student list</a>
     </nav>
 </header>

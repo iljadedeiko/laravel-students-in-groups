@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('create-project');
+        $projects = Project::all();
+
+        return view('create-project', compact('projects'));
     }
 
     /**
@@ -24,7 +27,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,7 +38,16 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'proj_title' => 'required',
+            'groups_count' => 'required',
+//            'stud_count' => 'required',
+        ]);
+
+        Project::create($request->all());
+
+        return redirect()->route('projects')
+            ->with('success', 'Project created successfully !');
     }
 
     /**
@@ -44,9 +56,9 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show(Project $id)
     {
-        //
+        return view('project-single', compact('id'));
     }
 
     /**

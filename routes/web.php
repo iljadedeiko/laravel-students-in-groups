@@ -14,4 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ProjectController::class, 'index'])->name('home');
+Route::get('/', [ProjectController::class, 'index'])->name('projects');
+
+Route::post('/', [ProjectController::class, 'store'])->name('projects.store');
+
+Route::get('/project/{id}', [ProjectController::class, 'show'])->name('projects.show');
