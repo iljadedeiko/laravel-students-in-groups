@@ -47,18 +47,18 @@ class ProjectController extends Controller
 
         $groupsCount = (int)$request->input('proj_groups_count');
 
-        $group = new Group();
         $groupsArray = [];
 
         for ($i = 1; $i <= $groupsCount; $i++) {
-            $groupsArray[$i] = new Group([
-                $group->gr_name = 'Group #' . $i,
-                $group->gr_stud_count = $request->input('gr_stud_count'),
-                $group->project_id = $project->id,
-            ]);
+            $group = new Group();
+
+            $group->gr_name = 'Group #' . $i;
+            $group->gr_stud_count = $request->input('gr_stud_count');
+            $group->project_id = $project->id;
+            $group->save();
+
+            $groupsArray[] = $group;
         }
-//        dd($groupsArray);
-//        $project->groups()->createMany($groupsArray);
 
         $project->groups()->saveMany($groupsArray);
 
