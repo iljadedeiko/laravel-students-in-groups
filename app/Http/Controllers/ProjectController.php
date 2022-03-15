@@ -46,7 +46,7 @@ class ProjectController extends Controller
         $project->save();
 
         return redirect()->route('projects')
-            ->with('success', 'Project created successfully !');
+            ->with('successProject', 'Project created successfully !');
     }
 
     /**
@@ -61,36 +61,15 @@ class ProjectController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Project $project)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Project $project)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy(Project $id)
     {
-        //
+        $id->delete();
+
+        return redirect()->route('projects')->with('deleteProject', 'Project was deleted');
     }
 }
