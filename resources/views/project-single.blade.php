@@ -65,16 +65,21 @@
 
 <div class="container mb-5 mt-5">
     <h2 class="mt-4">{{ __('Groups') }}</h2>
-    <div class="container-fluid">
+    <div class="container">
+
         <div class="row mt-4 log-6">
+            @foreach ($groups as $group)
             <div class="col-5 mt-8">
                 <table class="table table-bordered text-center">
                     <thead>
                     <tr>
-                        <th scope="col" class="table-header">Group name</th>
+                        <th scope="col" class="table-header">{{ $group->gr_name }}</th>
                     </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td>Ilja Dedeiko</td>
+                        </tr>
                         <tr>
                             <th>
                                 <label for="studentSelect"></label>
@@ -89,80 +94,8 @@
                     </tbody>
                 </table>
             </div>
-
-            <div class="col-5 mt-8">
-                <table class="table table-bordered text-center">
-                    <thead>
-                    <tr>
-                        <th scope="col" class="table-header">Group name</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th>
-                            <label for="studentSelect"></label>
-                            <select class="form-control" id="studentSelect">
-                                <option selected>{{ __('Assign student') }}</option>
-                                @foreach ($students as $student)
-                                    <option value="{{ $student->id }}">{{ $student->stud_full_name }}</option>
-                                @endforeach
-                            </select>
-                        </th>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            @endforeach
         </div>
-
-        <div class="row mt-4">
-
-            <div class="col-5 mt-8">
-                <table class="table table-bordered text-center">
-                    <thead>
-                    <tr>
-                        <th scope="col" class="table-header">Group name</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th>
-                            <label for="studentSelect"></label>
-                            <select class="form-control" id="studentSelect">
-                                <option selected>{{ __('Assign student') }}</option>
-                                @foreach ($students as $student)
-                                    <option value="{{ $student->id }}">{{ $student->stud_full_name }}</option>
-                                @endforeach
-                            </select>
-                        </th>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="col-5 mt-8">
-                <table class="table table-bordered text-center">
-                    <thead>
-                    <tr>
-                        <th scope="col" class="table-header">Group name</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th>
-                            <label for="studentSelect"></label>
-                            <select class="form-control" id="studentSelect">
-                                <option selected>{{ __('Assign student') }}</option>
-                                @foreach ($students as $student)
-                                    <option value="{{ $student->id }}">{{ $student->stud_full_name }}</option>
-                                @endforeach
-                            </select>
-                        </th>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
     </div>
 </div>
 

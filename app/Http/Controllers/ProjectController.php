@@ -85,6 +85,12 @@ class ProjectController extends Controller
     {
         $students = Student::all();
 
+        $groups = DB::table('projects as p')
+            ->join('groups as g', 'p.id', '=', 'g.project_id')
+            ->select('g.id', 'g.gr_name')
+            ->whereIn('p.id', $projectId)
+            ->get();
+
         $groupCountByProj = DB::table('projects as p')
             ->join('groups as g', 'p.id', '=', 'g.project_id')
             ->select('g.gr_stud_count')
@@ -96,8 +102,10 @@ class ProjectController extends Controller
 
         return view('project-single',
             compact('projectId',
-                    'students',
-                            'groupCountByProj')
+                'students',
+                'groups',
+                'groupCountByProj'
+            )
         );
     }
 

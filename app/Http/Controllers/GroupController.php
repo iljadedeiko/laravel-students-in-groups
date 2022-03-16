@@ -47,12 +47,7 @@ class GroupController extends Controller
      */
     public function show(Project $id)
     {
-        $groupsByProject = Group::where('project_id', $id)
-                        ->get();
 
-        return view('project-single', [
-            'groupsByProject' => $groupsByProject
-        ]);
     }
 
     /**
