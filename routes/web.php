@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,10 @@ Route::get('/', [ProjectController::class, 'index'])->name('projects');
 
 Route::post('/', [ProjectController::class, 'store'])->name('projects.store');
 
-Route::get('/project/{id}', [ProjectController::class, 'show'])->name('projects.show');
+Route::get('/project/{projectId}', [ProjectController::class, 'show'])->name('projects.show');
 
-Route::get('/project/{id}/delete', [ProjectController::class, 'destroy'])->name('projects.destroy');
+Route::get('/projects/{id}/delete', [ProjectController::class, 'destroy'])->name('projects.destroy');
+
+//Route::get('/project/{id}', [StudentController::class, 'show'])->name('students.show');
+
+//Route::get('/projects/{id}/groups', [GroupController::class, 'show'])->name('groups.show');

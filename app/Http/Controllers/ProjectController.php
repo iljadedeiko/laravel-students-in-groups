@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateProjectRequest;
 use App\Models\Group;
 use App\Models\Project;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\Input;
@@ -80,9 +81,14 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $id)
+    public function show(Project $projectId)
     {
-        return view('project-single', compact('id'));
+        $students = Student::all();
+
+        return view('project-single',
+            compact('projectId',
+                    'students')
+        );
     }
 
     /**
