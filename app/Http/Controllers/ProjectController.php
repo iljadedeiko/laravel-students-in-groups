@@ -6,6 +6,7 @@ use App\Http\Requests\CreateProjectRequest;
 use App\Models\Group;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\Input;
 
 class ProjectController extends Controller
@@ -17,7 +18,14 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projectIds = Project::get('id');
+
+        $projects = DB::table('projects as p')
+                        ->join('groups as g', 'p.id', '=', 'g.project_id')
+                        ->select('g.gr_stud_count', 'p.id', 'p.proj_title', 'p.proj_groups_count')
+                        ->whereIn('p.id', $projectIds)
+                        ->distinct()
+                        ->get();
 
         return view('create-project', compact('projects'));
     }

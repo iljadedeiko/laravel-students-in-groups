@@ -4,7 +4,7 @@
 
 @section('main-content')
 
-<div class="container">
+<div class="container-xxl">
 
     @if($errors->any())
         <div class="alert alert-danger center col-lg-3">
@@ -17,7 +17,7 @@
     @endif
 
     <div class="row">
-        <div class="col-lg-3 mr-5">
+        <div class="col-lg-3 mr-3">
             <h3 class="mb-3">{{ __('Create new project')}}</h3>
             <form action="{{ route('projects.store') }}" method="POST">
                 @csrf
@@ -50,7 +50,7 @@
             </form>
         </div>
 
-        <div class="col-lg-7 ml-5">
+        <div class="col-lg-8 ml-5">
 
             @if(session('deleteProject'))
                 <div class="alert alert-success mt-3" role="alert">
@@ -65,6 +65,7 @@
                     <th scope="col">#</th>
                     <th scope="col">{{ __('Project title') }}</th>
                     <th scope="col">{{ __('Number of groups') }}</th>
+                    <th scope="col">{{ __('Students per group') }}</th>
                     <th scope="col" class="text-center">{{ __('Actions') }}</th>
                 </tr>
                 </thead>
@@ -74,11 +75,11 @@
                         <th scope="row">{{ $project->id }}</th>
                         <td>{{ $project->proj_title }}</td>
                         <td>{{ $project->proj_groups_count }}</td>
+                        <td>{{ $project->gr_stud_count }}</td>
                         <td>
                             <a href="{{ route('projects.show', $project->id) }}">
                                 <button type="button" class="btn btn-primary">{{ __('Open') }}</button>
                             </a>
-
 
                             <a href="{{ route('projects.destroy', $project->id) }}">
                                 <button type="button" class="btn btn-danger float-right">{{ __('Delete') }}</button>
