@@ -3,3 +3,12 @@
     margin: 0;
 }
 
+.table-header, .create-stud-btn {
+    background-color: #E5E5E5;
+}
+
+.create-stud-btn {
+    color: black;
+    font-size: 20px;
+}
+

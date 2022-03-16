@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +23,6 @@ Route::get('/project/{projectId}', [ProjectController::class, 'show'])->name('pr
 
 Route::get('/projects/{id}/delete', [ProjectController::class, 'destroy'])->name('projects.destroy');
 
-//Route::get('/projects/{id}/groups', [GroupController::class, 'show'])->name('groups.show');
+Route::get('/projects/{id}', [GroupController::class, 'show'])->name('groups.show');
 //
 //Route::put('/projects/{id}/groups', [GroupController::class, 'update'])->name('groups.show');
