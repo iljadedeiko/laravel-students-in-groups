@@ -17,9 +17,11 @@
         @endif
 
         <div class="row col-5 flex-column">
-            <h5>{{ __('Project: ') }} {{ $projectId->proj_title }}</h5>
-            <h5>{{ __('Number of groups: ') }} {{ $projectId->proj_groups_count }}</h5>
-            <h5>{{ __('Students per group: ') }} </h5>
+            <p class="project-info-p">{{ __('Project: ') }} <strong>{{ $projectId->proj_title }}</strong> </p>
+            <p class="project-info-p">{{ __('Number of groups: ') }} <strong>{{ $projectId->proj_groups_count }}</strong> </p>
+            @foreach ($groupCountByProj as $groupCount)
+                <p class="project-info-p">{{ __('Students per group: ') }} <strong>{{ $groupCount->gr_stud_count }}</strong> </p>
+            @endforeach
         </div>
 
         <div class="row mt-4">

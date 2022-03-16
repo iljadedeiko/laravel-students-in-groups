@@ -9,7 +9,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['project_id', 'proj_title', 'proj_groups_count'];
+    protected $fillable = ['proj_title', 'proj_groups_count'];
     public $timestamps = false;
 
     public function groups()

@@ -23,6 +23,6 @@ Route::get('/project/{projectId}', [ProjectController::class, 'show'])->name('pr
 
 Route::get('/projects/{id}/delete', [ProjectController::class, 'destroy'])->name('projects.destroy');
 
-//Route::get('/project/{id}', [StudentController::class, 'show'])->name('students.show');
-
 //Route::get('/projects/{id}/groups', [GroupController::class, 'show'])->name('groups.show');
+//
+//Route::put('/projects/{id}/groups', [GroupController::class, 'update'])->name('groups.show');
