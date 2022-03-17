@@ -7,12 +7,18 @@
 <div class="container-xxl">
 
     @if($errors->any())
-        <div class="alert alert-danger center col-lg-3">
+        <div class="alert alert-danger center col-3" id="createProjectErrs">
             <ul>
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
+        </div>
+    @endif
+
+    @if(session('successStudent'))
+        <div class="alert alert-success mb-3 col-3" id="createStudent" role="alert">
+            {{ session('successStudent') }}
         </div>
     @endif
 
@@ -39,10 +45,10 @@
                     value="{{ old('gr_stud_count') }}">
                 </div>
 
-                <button type="submit" class="btn btn-success mb-4" name="buttonItm">{{ __('Add')}}</button>
+                <button type="submit" class="btn btn-success mb-4 col-5" name="buttonItm">{{ __('Add')}}</button>
 
                 @if(session('successProject'))
-                    <div class="alert alert-success" role="alert">
+                    <div class="alert alert-success" role="alert" id="createProject">
                         {{ session('successProject') }}
                     </div>
                 @endif
@@ -53,7 +59,7 @@
         <div class="col-lg-8 ml-5">
 
             @if(session('deleteProject'))
-                <div class="alert alert-success mt-3" role="alert">
+                <div class="alert alert-success mt-3" role="alert" id="deleteProject">
                     {{ session('deleteProject') }}
                 </div>
             @endif
@@ -66,7 +72,7 @@
                     <th scope="col">{{ __('Project title') }}</th>
                     <th scope="col">{{ __('Number of groups') }}</th>
                     <th scope="col">{{ __('Students per group') }}</th>
-                    <th scope="col" class="text-center">{{ __('Actions') }}</th>
+                    <th scope="col" colspan="2" class="text-center">{{ __('Actions') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -80,9 +86,16 @@
                             <a href="{{ route('projects.show', $project->id) }}">
                                 <button type="button" class="btn btn-primary">{{ __('Open') }}</button>
                             </a>
+                        </td>
 
+                        <td>
                             <a href="{{ route('projects.destroy', $project->id) }}">
-                                <button type="button" class="btn btn-danger float-right">{{ __('Delete') }}</button>
+                                <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger float-right">{{ __('Delete') }}</button>
+                                </form>
                             </a>
                         </td>
                     </tr>

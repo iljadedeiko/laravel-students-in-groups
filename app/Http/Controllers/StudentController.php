@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
+use App\Http\Requests\CreateStudentRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -25,7 +25,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('create-student');
     }
 
     /**
@@ -34,9 +34,15 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateStudentRequest $request)
     {
-        //
+        $student = new Student();
+        $student->stud_full_name = $request->input('stud_full_name');
+
+        $student->save();
+
+        return redirect()->route('projects')
+            ->with('successStudent', 'Student was added successfully !');
     }
 
     /**
@@ -81,6 +87,8 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student->delete();
+
+        return redirect()->back()->with('deleteStudent', 'Student was deleted');
     }
 }

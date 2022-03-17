@@ -2164,6 +2164,19 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+$(document).ready(function () {
+  setTimeout(function () {
+    $('#createStudent, #deleteProject, #createProject, #deleteStudent').fadeOut('slow', function () {
+      $('#createStudent, #deleteProject, #createProject, #deleteStudent').remove();
+    });
+  }, 2000);
+  setTimeout(function () {
+    $('#createProjectErrs, #createStudentErrs').fadeOut('slow', function () {
+      $('#createProjectErrs, #createStudentErrs').remove();
+    });
+  }, 5000);
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

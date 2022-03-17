@@ -6,9 +6,7 @@ use App\Http\Requests\CreateProjectRequest;
 use App\Models\Group;
 use App\Models\Project;
 use App\Models\Student;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\Console\Input\Input;
 
 class ProjectController extends Controller
 {
@@ -22,23 +20,13 @@ class ProjectController extends Controller
         $projectIds = Project::get('id');
 
         $projects = DB::table('projects as p')
-                        ->join('groups as g', 'p.id', '=', 'g.project_id')
-                        ->select('g.gr_stud_count', 'p.id', 'p.proj_title', 'p.proj_groups_count')
-                        ->whereIn('p.id', $projectIds)
-                        ->distinct()
-                        ->get();
+            ->join('groups as g', 'p.id', '=', 'g.project_id')
+            ->select('g.gr_stud_count', 'p.id', 'p.proj_title', 'p.proj_groups_count')
+            ->whereIn('p.id', $projectIds)
+            ->distinct()
+            ->get();
 
         return view('create-project', compact('projects'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
     }
 
     /**
@@ -81,27 +69,27 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $projectId)
+    public function show(Project $project)
     {
         $students = Student::all();
 
         $groups = DB::table('projects as p')
             ->join('groups as g', 'p.id', '=', 'g.project_id')
             ->select('g.id', 'g.gr_name')
-            ->whereIn('p.id', $projectId)
+            ->whereIn('p.id', $project)
             ->get();
 
         $groupCountByProj = DB::table('projects as p')
             ->join('groups as g', 'p.id', '=', 'g.project_id')
             ->select('g.gr_stud_count')
-            ->whereIn('p.id', $projectId)
+            ->whereIn('p.id', $project)
             ->distinct()
             ->get();
 
 //        dd($groupCountByProj);
 
-        return view('project-single',
-            compact('projectId',
+        return view('project-status',
+            compact('project',
                 'students',
                 'groups',
                 'groupCountByProj'
@@ -115,9 +103,9 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $id)
+    public function destroy(Project $project)
     {
-        $id->delete();
+        $project->delete();
 
         return redirect()->route('projects')->with('deleteProject', 'Project was deleted');
     }

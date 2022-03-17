@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,12 +18,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProjectController::class, 'index'])->name('projects');
 
-Route::post('/', [ProjectController::class, 'store'])->name('projects.store');
+Route::post('/projects/store', [ProjectController::class, 'store'])->name('projects.store');
 
-Route::get('/project/{projectId}', [ProjectController::class, 'show'])->name('projects.show');
+Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
 
-Route::get('/projects/{id}/delete', [ProjectController::class, 'destroy'])->name('projects.destroy');
+Route::delete('projects/delete/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
 
-Route::get('/projects/{id}', [GroupController::class, 'show'])->name('groups.show');
-//
+Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
+
+Route::post('/students/store', [StudentController::class, 'store'])->name('students.store');
+
+Route::delete('students/delete/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
+
+//Route::get('/projects/{id}', [GroupController::class, 'show'])->name('groups.show');
+
 //Route::put('/projects/{id}/groups', [GroupController::class, 'update'])->name('groups.show');
