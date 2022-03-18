@@ -9,8 +9,8 @@
     <div class="row col-5 flex-column">
         <p class="project-info-p">{{ __('Project: ') }} <strong>{{ $project->proj_title }}</strong> </p>
         <p class="project-info-p">{{ __('Number of groups: ') }} <strong>{{ $project->proj_groups_count }}</strong> </p>
-        @foreach ($groupCountByProj as $groupCount)
-            <p class="project-info-p">{{ __('Students per group: ') }} <strong>{{ $groupCount->gr_stud_count }}</strong> </p>
+        @foreach ($studPerGroupCount as $studCount)
+            <p class="project-info-p">{{ __('Students per group: ') }} <strong>{{ $studCount->gr_stud_count }}</strong> </p>
         @endforeach
     </div>
 
@@ -86,24 +86,34 @@
                 <table class="table table-bordered text-center">
                     <thead>
                     <tr>
-                        <th scope="col" class="table-header">{{ $group->gr_name }}</th>
+                        <th scope="col" class="table-header">{{ $group->gr_name }} {{ $group->id }}</th>
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach ($studPerGroupCount as $studCount)
+                        @for ($i = $studCount->gr_stud_count; $i > 0; $i--)
                         <tr>
-                            <td>Ilja Dedeiko</td>
+                            <td>
+                            @foreach ($studInGroups as $student)
+                                @foreach ($student->students as $studName)
+                                    {{ $studName->stud_full_name }}
+                                @endforeach
+                            @endforeach
+                            </td>
                         </tr>
-                        <tr>
-                            <th>
-                                <label for="studentSelect"></label>
-                                <select class="form-control" id="studentSelect">
-                                    <option selected>{{ __('Assign student') }}</option>
-                                    @foreach ($students as $student)
-                                        <option value="{{ $student->id }}">{{ $student->stud_full_name }}</option>
-                                    @endforeach
-                                </select>
-                            </th>
-                        </tr>
+                        @endfor
+                    @endforeach
+{{--                        <tr>--}}
+{{--                            <th>--}}
+{{--                                <label for="studentSelect"></label>--}}
+{{--                                <select class="form-control" id="studentSelect">--}}
+{{--                                    <option selected>{{ __('Assign student') }}</option>--}}
+{{--                                    @foreach ($students as $student)--}}
+{{--                                        <option value="{{ $student->id }}">{{ $student->stud_full_name }}</option>--}}
+{{--                                    @endforeach--}}
+{{--                                </select>--}}
+{{--                            </th>--}}
+{{--                        </tr>--}}
                     </tbody>
                 </table>
             </div>

@@ -24,6 +24,7 @@ class ProjectController extends Controller
             ->select('g.gr_stud_count', 'p.id', 'p.proj_title', 'p.proj_groups_count')
             ->whereIn('p.id', $projectIds)
             ->distinct()
+            ->orderByDesc('p.id')
             ->get();
 
         return view('create-project', compact('projects'));
@@ -71,28 +72,31 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        $students = Student::all();
+        $students = Student::with('groups')->get();
+//        dd($students);
 
-        $groups = DB::table('projects as p')
-            ->join('groups as g', 'p.id', '=', 'g.project_id')
-            ->select('g.id', 'g.gr_name')
-            ->whereIn('p.id', $project)
-            ->get();
+        $groups = $project->groups()
+                ->get();
 
-        $groupCountByProj = DB::table('projects as p')
+        $studPerGroupCount = DB::table('projects as p')
             ->join('groups as g', 'p.id', '=', 'g.project_id')
             ->select('g.gr_stud_count')
             ->whereIn('p.id', $project)
             ->distinct()
             ->get();
 
-//        dd($groupCountByProj);
+        $studInGroups = Group::with('students')
+            ->whereIn('project_id', $project)
+            ->has('students')
+            ->get();
+
 
         return view('project-status',
-            compact('project',
-                'students',
+            compact('students',
+                'project',
                 'groups',
-                'groupCountByProj'
+                'studPerGroupCount',
+                'studInGroups'
             )
         );
     }

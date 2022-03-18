@@ -14,6 +14,11 @@ class Project extends Model
 
     public function groups()
     {
-        return $this->hasMany(Group::class);
+        return $this->hasMany(Group::class, 'project_id', 'id');
+    }
+
+    public function students()
+    {
+        return $this->hasManyThrough(Student::class, Group::class);
     }
 }
