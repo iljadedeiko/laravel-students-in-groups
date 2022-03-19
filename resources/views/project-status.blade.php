@@ -84,6 +84,15 @@
             @foreach ($singleProjData->groups as $group)
             <div class="col-5 mt-3">
                 <table class="table table-bordered text-center">
+
+                    @if ($studPerGroupCount->gr_stud_count - $group->students->count() == 0)
+                    <thead>
+                        <tr>
+                            <th scope="col" class="group-is-full text-danger">{{ __('This group is full !') }}</th>
+                        </tr>
+                    </thead>
+                    @endif
+
                     <thead>
                     <tr>
                         <th scope="col" class="table-header">{{ $group->gr_name }} {{ $group->id }}</th>
@@ -101,14 +110,20 @@
                         @for ($i = $studPerGroupCount->gr_stud_count - $group->students->count(); $i > 0; $i--)
                         <tr>
                             <td>
-                                <select class="form-control" id="studentSelect">
-                                    <option selected>{{ __('Assign student') }}</option>
-                                    @foreach ($students as $student)
-                                        @if ($student->gr_name == null)
-                                            <option value="{{ $student->id }}">{{ $student->stud_full_name }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
+                                <form action="{{ route('students.update', $project->id) }}" method="POST">
+                                    @csrf
+                                    @method('UPDATE')
+
+                                    <select class="form-control" id="studentSelect" onchange="this.form.submit()">
+                                        <option selected>{{ __('Assign student') }}</option>
+
+                                        @foreach ($students as $student)
+                                            @if ($student->gr_name == null)
+                                                <option value="{{ $student->id }}">{{ $student->stud_full_name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </form>
                             </td>
                         </tr>
                         @endfor

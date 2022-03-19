@@ -30,6 +30,6 @@ Route::post('/students/store', [StudentController::class, 'store'])->name('stude
 
 Route::delete('students/delete/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
 
-//Route::get('/projects/{id}', [GroupController::class, 'show'])->name('groups.show');
+Route::get('/students/update/{id}', [StudentController::class, 'update'])->name('students.update');
 
 //Route::put('/projects/{id}/groups', [GroupController::class, 'update'])->name('groups.show');
