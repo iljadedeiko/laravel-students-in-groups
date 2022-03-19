@@ -76,7 +76,7 @@
     </div>
 @endif
 
-<div class="container mb-5 mt-5">
+<div class="container mt-5 groups-container">
     <h2 class="mt-4">{{ __('Groups') }}</h2>
     <div class="container">
 
@@ -95,7 +95,7 @@
 
                     <thead>
                     <tr>
-                        <th scope="col" class="table-header">{{ $group->gr_name }} {{ $group->id }}</th>
+                        <th scope="col" class="table-header">{{ $group->gr_name }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -110,15 +110,15 @@
                         @for ($i = $studPerGroupCount->gr_stud_count - $group->students->count(); $i > 0; $i--)
                         <tr>
                             <td>
-                                <form action="{{ route('students.update', $project->id) }}" method="POST">
+                                <form action="{{ route('students.update', [$group->id]) }}" method="POST">
                                     @csrf
-                                    @method('UPDATE')
+                                    @method('PUT')
 
-                                    <select class="form-control" id="studentSelect" onchange="this.form.submit()">
+                                    <select class="form-control" name="studentId" id="studentId" onchange="this.form.submit()">
                                         <option selected>{{ __('Assign student') }}</option>
-
                                         @foreach ($students as $student)
                                             @if ($student->gr_name == null)
+
                                                 <option value="{{ $student->id }}">{{ $student->stud_full_name }}</option>
                                             @endif
                                         @endforeach

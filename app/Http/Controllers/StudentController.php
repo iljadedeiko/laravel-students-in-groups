@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateStudentRequest;
+use App\Models\Group;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -54,11 +55,15 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, $groupId)
     {
+        $studentId = (int)$request->studentId;
+        $student = Student::where('id', $studentId)->first();
+        $student->group_id = $groupId;
 
+        $student->save();
 
-//        return redirect()->back();
+        return redirect()->back();
     }
 
     /**
