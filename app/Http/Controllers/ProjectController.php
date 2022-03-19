@@ -48,8 +48,8 @@ class ProjectController extends Controller
         $groupsArray = [];
 
         for ($i = 1; $i <= $groupsCount; $i++) {
-            $group = new Group();
 
+            $group = new Group();
             $group->gr_name = 'Group #' . $i;
             $group->gr_stud_count = $request->input('gr_stud_count');
             $group->project_id = $project->id;

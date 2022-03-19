@@ -7,7 +7,7 @@
 <div class="container-xxl">
 
     @if($errors->any())
-        <div class="alert alert-danger center col-3" id="createProjectErrs">
+        <div class="alert alert-danger center col-lg-3 col-sm-12" id="createProjectErrs">
             <ul>
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -17,7 +17,7 @@
     @endif
 
     @if(session('successStudent'))
-        <div class="alert alert-success mb-3 col-3" id="createStudent" role="alert">
+        <div class="alert alert-success mb-3 col-3 col-sm-10" id="createStudent" role="alert">
             {{ session('successStudent') }}
         </div>
     @endif
@@ -56,7 +56,7 @@
             </form>
         </div>
 
-        <div class="col-lg-8 ml-5">
+        <div class="col-lg-8 col-sm-12 ml-5 projects-list">
 
             @if(session('deleteProject'))
                 <div class="alert alert-success mt-3" role="alert" id="deleteProject">
