@@ -72,31 +72,27 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        $students = Student::with('groups')->get();
-//        dd($students);
+        $singleProjData = Project::with('groups.students')
+            ->where('id', $project['id'])
+            ->first();
 
-        $groups = $project->groups()
-                ->get();
+        $students = DB::table('students as s')
+            ->leftJoin('groups as g', 's.group_id', '=', 'g.id')
+            ->select('s.id', 's.stud_full_name', 'g.gr_name')
+            ->get();
 
         $studPerGroupCount = DB::table('projects as p')
             ->join('groups as g', 'p.id', '=', 'g.project_id')
             ->select('g.gr_stud_count')
-            ->whereIn('p.id', $project)
+            ->where('p.id', '=', $project['id'])
             ->distinct()
-            ->get();
-
-        $studInGroups = Group::with('students')
-            ->whereIn('project_id', $project)
-            ->has('students')
-            ->get();
-
+            ->first();
 
         return view('project-status',
             compact('students',
                 'project',
-                'groups',
+                'singleProjData',
                 'studPerGroupCount',
-                'studInGroups'
             )
         );
     }

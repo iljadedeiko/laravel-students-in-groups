@@ -9,9 +9,7 @@
     <div class="row col-5 flex-column">
         <p class="project-info-p">{{ __('Project: ') }} <strong>{{ $project->proj_title }}</strong> </p>
         <p class="project-info-p">{{ __('Number of groups: ') }} <strong>{{ $project->proj_groups_count }}</strong> </p>
-        @foreach ($studPerGroupCount as $studCount)
-            <p class="project-info-p">{{ __('Students per group: ') }} <strong>{{ $studCount->gr_stud_count }}</strong> </p>
-        @endforeach
+        <p class="project-info-p">{{ __('Students per group: ') }} <strong>{{ $studPerGroupCount->gr_stud_count }}</strong> </p>
     </div>
 
     <div class="row mt-4">
@@ -38,10 +36,10 @@
                     <tr>
                         <th scope="row">{{ $student->id }}</th>
                         <td>{{ $student->stud_full_name }}</td>
-                        @empty ($student->group_id)
+                        @empty ($student->id)
                             <td> - </td>
                         @else
-                            <td>{{ $student->group_id }}</td>
+                            <td>{{ $student->gr_name }}</td>
                         @endempty
                         <td>
                             <a href="{{ route('students.destroy', $student->id) }}">
@@ -81,8 +79,8 @@
     <div class="container">
 
         <div class="row mt-4 log-6">
-            @foreach ($groups as $group)
-            <div class="col-5 mt-8">
+            @foreach ($singleProjData->groups as $group)
+            <div class="col-5 mt-3">
                 <table class="table table-bordered text-center">
                     <thead>
                     <tr>
@@ -90,30 +88,28 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($studPerGroupCount as $studCount)
-                        @for ($i = $studCount->gr_stud_count; $i > 0; $i--)
+
+                        @foreach ($group->students as $studentData)
                         <tr>
                             <td>
-                            @foreach ($studInGroups as $student)
-                                @foreach ($student->students as $studName)
-                                    {{ $studName->stud_full_name }}
+                                {{ $studentData->stud_full_name }}
+                            </td>
+                        </tr>
+                        @endforeach
+
+                        @for ($i = $studPerGroupCount->gr_stud_count - $group->students->count(); $i > 0; $i--)
+                        <tr>
+                            <td>
+                                <select class="form-control" id="studentSelect">
+                                @foreach ($students as $student)
+                                    <option selected>{{ __('Assign student') }}</option>
+                                    <option value="{{ $student->id }}">{{ $student->stud_full_name }}</option>
                                 @endforeach
-                            @endforeach
+                                </select>
                             </td>
                         </tr>
                         @endfor
-                    @endforeach
-{{--                        <tr>--}}
-{{--                            <th>--}}
-{{--                                <label for="studentSelect"></label>--}}
-{{--                                <select class="form-control" id="studentSelect">--}}
-{{--                                    <option selected>{{ __('Assign student') }}</option>--}}
-{{--                                    @foreach ($students as $student)--}}
-{{--                                        <option value="{{ $student->id }}">{{ $student->stud_full_name }}</option>--}}
-{{--                                    @endforeach--}}
-{{--                                </select>--}}
-{{--                            </th>--}}
-{{--                        </tr>--}}
+
                     </tbody>
                 </table>
             </div>
