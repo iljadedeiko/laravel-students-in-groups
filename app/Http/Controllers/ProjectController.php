@@ -78,8 +78,11 @@ class ProjectController extends Controller
 
         $students = DB::table('students as s')
             ->leftJoin('groups as g', 's.group_id', '=', 'g.id')
-            ->select('s.id', 's.stud_full_name', 'g.gr_name')
+            ->leftJoin('projects as p', 'g.project_id', '=', 'p.id')
+            ->select('s.id', 's.stud_full_name', 'g.gr_name', 'p.proj_title')
             ->get();
+
+//        dd($students);
 
         $studPerGroupCount = DB::table('projects as p')
             ->join('groups as g', 'p.id', '=', 'g.project_id')

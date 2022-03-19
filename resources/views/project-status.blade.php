@@ -14,7 +14,7 @@
 
     <div class="row mt-4">
         <div class="col-lg-10">
-            <h2 class="mb-3">{{ __('Students') }}</h2>
+            <h2 class="mb-3">{{ __('All students') }}</h2>
 
             @if(session('deleteStudent'))
                 <div class="alert alert-success mt-3 col-5" role="alert" id="deleteStudent">
@@ -28,6 +28,7 @@
                         <th scope="col">#</th>
                         <th scope="col">{{ __('Student') }}</th>
                         <th scope="col">{{ __('Group') }}</th>
+                        <th scope="col">{{ __('Project') }}</th>
                         <th scope="col" class="col-2">{{ __('Action') }}</th>
                     </tr>
                 </thead>
@@ -41,6 +42,7 @@
                         @else
                             <td>{{ $student->gr_name }}</td>
                         @endempty
+                        <td>{{ $student->proj_title }}</td>
                         <td>
                             <a href="{{ route('students.destroy', $student->id) }}">
                                 <form action="{{ route('students.destroy', $student->id) }}" method="POST">
@@ -88,7 +90,6 @@
                     </tr>
                     </thead>
                     <tbody>
-
                         @foreach ($group->students as $studentData)
                         <tr>
                             <td>
@@ -101,15 +102,16 @@
                         <tr>
                             <td>
                                 <select class="form-control" id="studentSelect">
-                                @foreach ($students as $student)
                                     <option selected>{{ __('Assign student') }}</option>
-                                    <option value="{{ $student->id }}">{{ $student->stud_full_name }}</option>
-                                @endforeach
+                                    @foreach ($students as $student)
+                                        @if ($student->gr_name == null)
+                                            <option value="{{ $student->id }}">{{ $student->stud_full_name }}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </td>
                         </tr>
                         @endfor
-
                     </tbody>
                 </table>
             </div>
