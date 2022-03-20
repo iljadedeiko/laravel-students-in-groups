@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateStudentRequest;
 use App\Models\Group;
+use App\Models\Project;
 use App\Models\Student;
 use Illuminate\Http\Request;
 

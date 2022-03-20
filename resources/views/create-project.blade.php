@@ -17,7 +17,7 @@
     @endif
 
     @if(session('successStudent'))
-        <div class="alert alert-success mb-3 col-3 col-sm-10" id="createStudent" role="alert">
+        <div class="alert alert-success mb-3 col-sm-12 col-lg-3" id="createStudent" role="alert">
             {{ session('successStudent') }}
         </div>
     @endif

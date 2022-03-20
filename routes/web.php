@@ -22,12 +22,12 @@ Route::post('/projects/store', [ProjectController::class, 'store'])->name('proje
 
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
 
-Route::delete('projects/delete/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+Route::delete('/projects/delete/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
 
-Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
+Route::get('/students/create/', [StudentController::class, 'create'])->name('students.create');
 
 Route::post('/students/store', [StudentController::class, 'store'])->name('students.store');
 
-Route::delete('students/delete/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
+Route::delete('/students/delete/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
 
 Route::put('/students/update/{groupId}', [StudentController::class, 'update'])->name('students.update');

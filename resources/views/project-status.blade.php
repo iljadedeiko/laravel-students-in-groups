@@ -60,7 +60,7 @@
             </table>
 
             <a href="{{ route('students.create') }}">
-                <button type="button" class="btn btn-outline-secondary create-stud-btn">{{ __('Create new student') }}</button>
+                <button type="button" class="btn btn-outline-secondary create-stud-btn">{{ __('Add new student') }}</button>
             </a>
         </div>
     </div>
@@ -110,7 +110,7 @@
                         @for ($i = $studPerGroupCount->gr_stud_count - $group->students->count(); $i > 0; $i--)
                         <tr>
                             <td>
-                                <form action="{{ route('students.update', [$group->id]) }}" method="POST">
+                                <form action="{{ route('students.update', [$group->id]) }}" id="groupsForm" method="POST">
                                     @csrf
                                     @method('PUT')
 
@@ -118,7 +118,6 @@
                                         <option selected>{{ __('Assign student') }}</option>
                                         @foreach ($students as $student)
                                             @if ($student->gr_name == null)
-
                                                 <option value="{{ $student->id }}">{{ $student->stud_full_name }}</option>
                                             @endif
                                         @endforeach
