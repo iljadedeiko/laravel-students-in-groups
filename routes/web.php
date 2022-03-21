@@ -24,7 +24,7 @@ Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('pro
 
 Route::delete('/projects/delete/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
 
-Route::get('/students/create/', [StudentController::class, 'create'])->name('students.create');
+Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
 
 Route::post('/students/store', [StudentController::class, 'store'])->name('students.store');
 
