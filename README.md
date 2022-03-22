@@ -1,64 +1,38 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Application for the teacher to assign students to groups for the project using Laravel framework.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<h2>Used Technologies</h2>
+- PHP 8.1.2 <br>
+- Laravel Framework 9.4.1 <br>
+- MySQL RDBMS <br>
+- Faker - PHP library that generates fake or dummy data for your application
 
-## About Laravel
+<h2>Instructions for setting up a Laravel project from Github.com</h2>
+URL: https://stackoverflow.com/questions/38602321/cloning-laravel-project-from-github
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<h2>Hosted application</h2>
+The app has been uploaded to the free hosting service heroku <br>
+URL: http://projects-for-students.herokuapp.com/
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<h2>Initial database schema</h2>
+The SQL file to create the initial schema for the database <br>
+is located at the following project path: <br>
+students-by-groups/database/initial/students_by_groups.sql
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<h2>Solution and technical decisions</h2>
+1. Migration files and models for the tables have been created: Student, Project and Group. <br>
+And also the relationship of the tables: Project -> Group (1:M) and Group -> Student (1:M). <br><br>
+2. The home page shows all created projects and you can create a new <br>
+project or delete an existing one. The data entered are validated. <br><br>
+3. When opening a project status page, the user sees a list of students and can create a new one or delete existing. <br><br>
+4. The creation of a new user takes place on a separate page, where the value entered is checked for uniqueness. <br><br>
+5. Next, on the same page, the user can add students to groups. <br>
+The number of groups and the number of students in them is determined during project creation. <br>
+Based on this data, the desired number of tables and possible values in them are generated. <br><br>
+6. If the group overflows, the user sees a corresponding notification. <br>
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<h2>Tests</h2>
+A Feature test has been added for student removing from list.
+    
+<h2>REST API Endpoint</h2>
+The REST API is implemented to add a new student. <br>
+Create Student POST Endpoint: /students/store/
