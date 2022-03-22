@@ -10,7 +10,7 @@
 URL: https://stackoverflow.com/questions/38602321/cloning-laravel-project-from-github
 
 <h2>Hosted application</h2>
-The app has been uploaded to the free hosting service heroku <br>
+The app has been uploaded to the free hosting service Heroku <br>
 URL: http://projects-for-students.herokuapp.com/
 
 <h2>Initial database schema</h2>
