@@ -4,7 +4,7 @@
 - PHP 8.1.2 <br>
 - Laravel Framework 9.4.1 <br>
 - MySQL RDBMS <br>
-- Faker - PHP library that generates fake or dummy data for your application
+- Faker - PHP library that generates fake or dummy data for application
 
 <h2>Instructions for setting up a Laravel project from Github.com</h2>
 URL: https://stackoverflow.com/questions/38602321/cloning-laravel-project-from-github
