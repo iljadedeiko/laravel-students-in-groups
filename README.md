@@ -35,4 +35,4 @@ A Feature test has been added for student removing from list.
     
 <h2>REST API Endpoint</h2>
 The REST API is implemented to add a new student. <br>
-Create Student POST Endpoint: /students/store/
+Create Student POST Endpoint: api/students/store/
