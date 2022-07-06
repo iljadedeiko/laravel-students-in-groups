@@ -1,4 +1,4 @@
-# Application for the teacher to assign students to groups for the project using Laravel framework.
+# Application for the teacher to assign students to groups for the project using Laravel framework
 
 <h2>Used Technologies</h2>
 - PHP 8.1.2 <br>
